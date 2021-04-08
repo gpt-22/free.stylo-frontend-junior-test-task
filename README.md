@@ -14,12 +14,12 @@ NEXT_PUBLIC_CLIENT_SECRET=your_client_secret
 ```
 * Запустите проект в режиме разработки: ```npm run dev```
 
-### Compiles and hot-reloads for development
+###  Компиляция и hot-reload для разработки
 ```
-npm run def
+npm run dev
 ```
 
-### Compiles and minifies for production
+### Компиляция и минификация для продакшена
 ```
 npm run build
 ```
