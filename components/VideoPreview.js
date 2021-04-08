@@ -1,5 +1,8 @@
+import {useState} from 'react'
 
-const VideoPreview = ({ video, btnText, btnCallback }) => {
+const VideoPreview = ({ video, btnText, btnCallback, btnTextOnClick, isClicked }) => {
+  const [clicked, setClicked] = useState(isClicked)
+
   const previewWidth = '360'
   const previewHeight = '200'
   const src = video.thumbnail_url
@@ -21,10 +24,12 @@ const VideoPreview = ({ video, btnText, btnCallback }) => {
               className="btn"
               onClick={e => {
                 e.preventDefault()
+                setClicked(true)
                 btnCallback(video)
               }}
+              disabled={clicked}
             >
-              {btnText}
+              { !clicked ? btnText : btnTextOnClick}
             </button>
           </div>
         </div>

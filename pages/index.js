@@ -11,6 +11,7 @@ const Index = () => {
   }
   const channelRegex = /^[a-zA-Z0-9]{1,25}$/
 
+  const [favouritesIds, setFavouritesIds] = useState(getFavouritesIds())
   const [loading, setLoading] = useState(false)
   const [videos, setVideos] = useState([])
   const [channel, setChannel] = useState('')
@@ -19,6 +20,13 @@ const Index = () => {
   const [channelValid, setChannelValid]= useState(false)
   const [noChannel, setNoChannel] = useState(false)
   const [emptyChannel, setEmptyChannel] = useState(false)
+
+  function getFavouritesIds() {
+    if (process.browser) {
+      const ids = JSON.parse(localStorage.getItem('favourites'))
+      return ids ? ids.map(video => video.id) : []
+    } else return []
+  }
 
   function handleChange(e) {
     const value = e.target.value
@@ -84,6 +92,8 @@ const Index = () => {
           video={video}
           btnText={'В избранное'}
           btnCallback={addToFavourites}
+          btnTextOnClick={'Добавлено ✔'}
+          isClicked={favouritesIds.includes(video.id)}
         />
       })
     }
