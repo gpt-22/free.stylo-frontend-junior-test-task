@@ -1,0 +1,87 @@
+.search-form {
+  display: flex;
+  justify-content: center;
+}
+
+.search {
+  margin: 0 5px 0 0;
+  padding: .5rem 1rem;
+  border-radius: .6rem;
+  line-height: 1.5;
+  border-width: 2px;
+  border-color: rgba(0, 0, 0, .1);
+  outline: none;
+
+  &::-webkit-search-cancel-button{
+    -webkit-appearance: none;
+    position: relative;
+    right: -8px;
+    height: 1em;
+    width: 1em;
+    border-radius: 50em;
+    background: url(https://pro.fontawesome.com/releases/v5.10.0/svgs/solid/times-circle.svg) no-repeat 50% 50%;
+    background-size: contain;
+    opacity: 0;
+    pointer-events: none;
+  }
+  &:focus::-webkit-search-cancel-button {
+    opacity: .3;
+    pointer-events: all;
+  }
+}
+
+
+.previews {
+  padding: 30px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.preview {
+  position: relative;
+
+  &:hover &__hidden {
+    display: flex;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__link {
+    padding: 0;
+    margin: 0;
+  }
+
+  &__hidden {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .4);
+  }
+
+  &__title {
+    text-align: center;
+    padding: 1rem;
+    font-size: 18px;
+    color: #fff;
+  }
+
+  &__btn-row {
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+
+    & > .btn {
+      font-size: 14px;
+    }
+  }
+}
