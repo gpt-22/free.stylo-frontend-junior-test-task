@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 const Navbar = () => {
@@ -23,7 +23,7 @@ const Navbar = () => {
         })
       }
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

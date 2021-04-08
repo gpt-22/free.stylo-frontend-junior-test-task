@@ -1,27 +1,20 @@
-import {useState, useEffect, createRef} from 'react';
-import MainContainer from '../components/MainContainer';
-import Preview from '../components/Preview';
-import {getVideos} from '../api';
+import {useState, useEffect, createRef} from 'react'
+import MainLayout from '../components/MainLayout'
+import VideoPreview from '../components/VideoPreview'
+import Loader from "../components/Loader"
+import {getVideos} from '../api'
 
 const Index = () => {
+
+  const [loading, setLoading] = useState(false)
   const [videos, setVideos] = useState([])
   const [input, setInput] = useState('')
 
-  const inputRef = createRef(input)
+  const inputRef = createRef()
 
   useEffect(() => {
-    inputRef.current.value = getInputValueFromLS()
-    setInput(inputRef.current.value)
     inputRef.current.focus()
   })
-
-  function getInputValueFromLS() {
-    let inputValue
-    if (process.browser) {
-      inputValue = localStorage.getItem('inputValue')
-    }
-    return inputValue || null
-  }
 
   function handleChange(e) {
     setInput(e.target.value)
@@ -35,33 +28,59 @@ const Index = () => {
     e.preventDefault()
 
     if (isInputValid()) {
-      localStorage.setItem('inputValue', input)
+      setLoading(true)
       const videos = await getVideos(input)
       setVideos(videos)
+      setLoading(false)
     }
   }
 
+  function addToFavourites(video) {
+    let videos = JSON.parse(localStorage.getItem('favourites'))
+    const ids = videos.map(video => video.id)
+    if (videos) {
+      !ids.includes(video.id) ? videos.push(video) : ''
+    } else videos = [video]
+    localStorage.setItem('favourites', JSON.stringify(videos))
+  }
+
+  function getLoadingOrPreviews() {
+    if (loading) {
+      return <Loader />
+    } else {
+      return videos.map(video => {
+        return <VideoPreview
+          key={video.id}
+          video={video}
+          btnText={'В избранное'}
+          btnCallback={addToFavourites}
+        />
+      })
+    }
+  }
+
+
   return (
-    <MainContainer title={'Поиск видео'}>
+    <MainLayout title={'Поиск видео'}>
       <form action="get" className="search-form">
         <input
           type="search"
-          className="search"
+          className="search-form__search"
           placeholder="Введите название канала"
           value={input}
           onChange={handleChange}
           ref={inputRef}
         />
-        <button type="submit" className="btn" onClick={updateVideos}>
+        <button type="submit" className="search-form__btn btn" onClick={updateVideos}>
           Загрузить
         </button>
       </form>
 
       <div className="previews">
-        { videos.map(video => <Preview video={video} key={video.id}/>) }
+        { getLoadingOrPreviews() }
       </div>
-    </MainContainer>
-  );
-};
+    </MainLayout>
+  )
+}
 
-export default Index;
+export default Index

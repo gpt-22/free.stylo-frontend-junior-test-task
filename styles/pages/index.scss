@@ -1,35 +1,36 @@
 .search-form {
   display: flex;
   justify-content: center;
-}
 
-.search {
-  margin: 0 5px 0 0;
-  padding: .5rem 1rem;
-  border-radius: .6rem;
-  line-height: 1.5;
-  border-width: 2px;
-  border-color: rgba(0, 0, 0, .1);
-  outline: none;
+  &__search {
+    margin: 0 5px 0 0;
+    padding: .5rem 1rem;
+    border-radius: .6rem;
+    line-height: 1.5;
+    border-width: 2px;
+    border-color: rgba(0, 0, 0, .1);
+    outline: none;
 
-  &::-webkit-search-cancel-button{
-    -webkit-appearance: none;
-    position: relative;
-    right: -8px;
-    height: 1em;
-    width: 1em;
-    border-radius: 50em;
-    background: url(https://pro.fontawesome.com/releases/v5.10.0/svgs/solid/times-circle.svg) no-repeat 50% 50%;
-    background-size: contain;
-    opacity: 0;
-    pointer-events: none;
+    &::-webkit-search-cancel-button{
+      -webkit-appearance: none;
+      position: relative;
+      right: -8px;
+      height: 1em;
+      width: 1em;
+      border-radius: 50em;
+      background: url(https://pro.fontawesome.com/releases/v5.10.0/svgs/solid/times-circle.svg) no-repeat 50% 50%;
+      background-size: contain;
+      opacity: 0;
+      pointer-events: none;
+    }
+    &:focus::-webkit-search-cancel-button {
+      opacity: .3;
+      pointer-events: all;
+    }
   }
-  &:focus::-webkit-search-cancel-button {
-    opacity: .3;
-    pointer-events: all;
-  }
-}
 
+  &__btn {}
+}
 
 .previews {
   padding: 30px 0;

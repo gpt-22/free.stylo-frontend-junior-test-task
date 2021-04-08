@@ -1,7 +1,7 @@
-import Head from "next/head";
-import Navbar from "./Navbar";
+import Head from 'next/head'
+import Navbar from './Navbar'
 
-const MainContainer = ({ children, title }) => {
+const MainLayout = ({ children, title }) => {
   return (
     <>
       <Head>
@@ -17,7 +17,7 @@ const MainContainer = ({ children, title }) => {
         { children }
       </div>
     </>
-  );
-};
+  )
+}
 
-export default MainContainer;
+export default MainLayout

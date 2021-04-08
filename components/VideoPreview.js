@@ -1,5 +1,10 @@
-const FavouriteVideo = ({ video, onRemove }) => {
-  const src = video.thumbnail_url.replace('%{width}','360').replace('%{height}', '200')
+
+const VideoPreview = ({ video, btnText, btnCallback }) => {
+  const previewWidth = '360'
+  const previewHeight = '200'
+  const src = video.thumbnail_url
+    .replace('%{width}', previewWidth)
+    .replace('%{height}', previewHeight)
 
   return (
     <div className="preview">
@@ -10,21 +15,22 @@ const FavouriteVideo = ({ video, onRemove }) => {
           <h2 className="preview__title">
             { video.title }
           </h2>
+
           <div className="preview__btn-row">
             <button
               className="btn"
-              onClick={(e) => {
+              onClick={e => {
                 e.preventDefault()
-                onRemove(video)
+                btnCallback(video)
               }}
             >
-              Удалить из избранного
+              {btnText}
             </button>
           </div>
         </div>
       </a>
     </div>
-  );
-};
+  )
+}
 
-export default FavouriteVideo;
+export default VideoPreview
