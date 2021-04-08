@@ -2,6 +2,18 @@
   display: flex;
   justify-content: center;
 
+  &__search-wrapper {
+    position: relative;
+  }
+
+  &__search-label {
+    position: absolute;
+    height: 4rem;
+    bottom: -4.5rem;
+    color: #ff4141;
+    font-size: 14px;
+  }
+
   &__search {
     margin: 0 5px 0 0;
     padding: .5rem 1rem;
@@ -22,6 +34,7 @@
       background-size: contain;
       opacity: 0;
       pointer-events: none;
+      cursor: pointer;
     }
     &:focus::-webkit-search-cancel-button {
       opacity: .3;
@@ -33,7 +46,7 @@
 }
 
 .previews {
-  padding: 30px 0;
+  padding: 5rem 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 20px;

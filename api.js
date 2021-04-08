@@ -27,7 +27,7 @@ export async function getUserID(login, accessToken, clientID) {
   const users = await resp.json()
 
   if (!users.data.length) {
-    throw new Error('No users with such LOGIN')
+    return -1
   }
 
   return users.data[0].id
@@ -57,6 +57,7 @@ export async function getVideos(login) {
   const accessToken = await getAccessToken(clientID, clientSecret)
 
   const userID = await getUserID(login, accessToken, clientID)
+  if (userID === -1) return ['no-channel']
 
   return await getVideosByUserID(userID, accessToken, clientID)
 }

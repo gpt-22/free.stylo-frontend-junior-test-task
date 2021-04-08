@@ -27,8 +27,18 @@ a {
   color: #fff;
 
   &:active {
-    background-color: darken($color-primary, 10%);
+    background-color: darken($color-primary, 20%);
   }
+  &:disabled {
+    background-color: lighten($color-primary, 20%);
+  }
+}
+
+.error {
+  grid-column: span 3;
+  text-align: center;
+  color: #ff4141;
+  font-size: 2em;
 }
 
 .container {
