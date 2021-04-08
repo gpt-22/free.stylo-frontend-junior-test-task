@@ -3,7 +3,7 @@
 ### Установка проекта
 
 ```
-git clone https://github.com/IncomprehensibleGuy/free.stylo-frontend-junior-test-task
+git clone https://github.com/IncomprehensibleGuy/free.stylo-frontend-junior-test-task .
 npm install
 ```
 * Создать приложение на https://dev.twitch.tv/console/apps
